@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin — QuantumReport</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- LOGIN SCREEN -->
+  <div class="admin-login" id="adminLogin">
+    <div class="admin-login__box">
+      <div class="auth__logo" style="justify-content:center;margin-bottom:24px">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="#10b981" stroke-width="2" fill="none"/>
+          <path d="M16 8v8l6 3" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2" fill="#10b981"/>
+        </svg>
+        <span class="auth__logo-text" style="font-size:1.2rem">QuantumReport</span>
+      </div>
+      <h1 class="admin-login__title">Panel de Administración</h1>
+      <p class="admin-login__sub">Acceso exclusivo para el propietario</p>
+      <form id="adminLoginForm">
+        <div class="auth__field">
+          <label class="auth__label">Usuario</label>
+          <input type="text" id="adminUser" class="auth__input" placeholder="admin" required>
+        </div>
+        <div class="auth__field">
+          <label class="auth__label">Contraseña</label>
+          <input type="password" id="adminPass" class="auth__input" placeholder="••••••••" required>
+        </div>
+        <p class="admin-login__error" id="adminError" style="display:none;color:#ef4444;font-size:0.85rem;text-align:center">Credenciales incorrectas</p>
+        <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;margin-top:8px">Acceder</button>
+      </form>
+      <p class="auth__back" style="margin-top:20px"><a href="index.html">← Volver al inicio</a></p>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-panel" id="adminPanel" style="display:none">
+
+    <header class="admin-topbar">
+      <div class="admin-topbar__inner">
+        <div class="admin-topbar__brand">
+          <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+            <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="#10b981" stroke-width="2" fill="none"/>
+            <path d="M16 8v8l6 3" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="2" fill="#10b981"/>
+          </svg>
+          <span>QuantumReport · Admin</span>
+        </div>
+        <button class="btn btn--ghost" id="logoutBtn" style="font-size:0.8rem;padding:8px 18px">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="admin-main__inner">
+
+        <!-- Stats -->
+        <div class="admin-stats">
+          <div class="admin-stat">
+            <span class="admin-stat__num" id="totalConsultorios">12</span>
+            <span class="admin-stat__label">Consultorios</span>
+          </div>
+          <div class="admin-stat">
+            <span class="admin-stat__num">156</span>
+            <span class="admin-stat__label">Análisis este mes</span>
+          </div>
+          <div class="admin-stat">
+            <span class="admin-stat__num" id="ingresoEstimado">$1.245</span>
+            <span class="admin-stat__label">Ingreso estimado / mes</span>
+          </div>
+          <div class="admin-stat">
+            <span class="admin-stat__num">98%</span>
+            <span class="admin-stat__label">Uptime</span>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="admin-tabs">
+          <button class="admin-tab admin-tab--active" data-tab="consultorios">Consultorios</button>
+          <button class="admin-tab" data-tab="miPerfil">Mi Perfil</button>
+        </div>
+
+        <!-- Tab: Consultorios -->
+        <div class="admin-tab-content admin-tab-content--active" id="tabConsultorios">
+          <div class="admin-table-wrap">
+            <h2 class="admin-table__title">Consultorios registrados</h2>
+            <div class="admin-table-scroll">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Consultorio</th>
+                    <th>Email</th>
+                    <th>WhatsApp</th>
+                    <th>Plan</th>
+                    <th>Análisis Usados</th>
+                    <th>Límite</th>
+                    <th>Registro</th>
+                  </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                  <!-- Se llena con JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Mi Perfil -->
+        <div class="admin-tab-content" id="tabMiPerfil">
+          <div class="admin-table-wrap">
+            <h2 class="admin-table__title">Mi Perfil de Administrador</h2>
+            <p style="font-size:0.875rem;color:var(--gray-500);margin-bottom:28px">Actualiza las credenciales de acceso al panel administrativo.</p>
+            <form id="adminProfileForm" class="admin-profile-form">
+              <div class="profile-form__field">
+                <label>Usuario</label>
+                <input type="text" class="profile-form__input" id="adminNewUser" required>
+              </div>
+              <div class="profile-form__row">
+                <div class="profile-form__field">
+                  <label>Nueva contraseña</label>
+                  <input type="password" class="profile-form__input" id="adminNewPass" placeholder="Mínimo 6 caracteres" required>
+                </div>
+                <div class="profile-form__field">
+                  <label>Confirmar contraseña</label>
+                  <input type="password" class="profile-form__input" id="adminConfirmPass" placeholder="Repite la contraseña" required>
+                </div>
+              </div>
+              <div class="profile-form__actions">
+                <button type="submit" class="btn btn--primary">Guardar cambios</button>
+              </div>
+              <p class="admin-profile__msg" id="adminProfileMsg" style="display:none;margin-top:12px;font-size:0.85rem;font-weight:600"></p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

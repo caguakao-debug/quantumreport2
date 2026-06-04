@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión — QuantumReport</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+
+  <main class="auth">
+    <div class="auth__container">
+      <!-- Branding -->
+      <a href="/" class="auth__logo">
+        <svg width="36" height="36" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="#10b981" stroke-width="2" fill="none"/>
+          <path d="M16 8v8l6 3" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2" fill="#10b981"/>
+        </svg>
+        <span class="auth__logo-text">QuantumReport</span>
+      </a>
+
+      <!-- Heading -->
+      <h1 class="auth__title">Inicia sesión</h1>
+      <p class="auth__sub">Accede al panel de tu consultorio</p>
+
+      <!-- Form -->
+      <form class="auth__form" id="loginForm">
+        <div class="auth__field">
+          <label for="email" class="auth__label">Correo electrónico</label>
+          <input type="email" id="email" class="auth__input" placeholder="tucorreo@consultorio.com" required autocomplete="email">
+        </div>
+        <div class="auth__field">
+          <div class="auth__label-row">
+            <label for="password" class="auth__label">Contraseña</label>
+            <a href="#" class="auth__forgot">¿Olvidaste tu contraseña?</a>
+          </div>
+          <div class="auth__password-wrap">
+            <input type="password" id="password" class="auth__input" placeholder="••••••••" required autocomplete="current-password">
+            <button type="button" class="auth__toggle-pass" aria-label="Mostrar contraseña">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="loginError" class="auth__error" style="display:none;"></div>
+        <button type="submit" class="btn btn--primary auth__submit">Ingresar</button>
+      </form>
+
+      <!-- Footer -->
+      <p class="auth__switch">¿No tienes cuenta? <a href="register.html">Registra tu consultorio</a></p>
+      <p class="auth__back"><a href="index.html">← Volver al inicio</a></p>
+    </div>
+  </main>
+
+  <script src="supabase.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

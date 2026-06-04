@@ -1,0 +1,219 @@
+/* ============================================
+   QUANTUMREPORT — Auth (Login / Register)
+   ============================================ */
+
+.auth-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0fdf4 0%, #f8fafc 50%, #ffffff 100%);
+  padding: 40px 20px;
+}
+
+.auth {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auth__container {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border-radius: 24px;
+  border: 1px solid var(--gray-200);
+  padding: 48px 40px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.04);
+  animation: fadeUp 0.6s var(--ease-out) both;
+}
+
+.auth__container--wide {
+  max-width: 540px;
+}
+
+/* Logo */
+.auth__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.auth__logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--gray-900);
+}
+
+/* Headings */
+.auth__title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.auth__sub {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* Form */
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.auth__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.auth__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+.auth__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.auth__forgot {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-weight: 500;
+}
+.auth__forgot:hover {
+  text-decoration: underline;
+}
+.auth__input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gray-200);
+  background: var(--gray-50);
+  color: var(--gray-900);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.auth__input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  background: white;
+}
+.auth__input::placeholder {
+  color: var(--gray-400);
+}
+
+/* Password toggle */
+.auth__password-wrap {
+  position: relative;
+}
+.auth__toggle-pass {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  translate: 0 -50%;
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  transition: color 0.2s;
+}
+.auth__toggle-pass:hover {
+  color: var(--gray-600);
+}
+
+/* Row (two columns) */
+.auth__row {
+  display: flex;
+  gap: 16px;
+}
+@media (max-width: 500px) {
+  .auth__row { flex-direction: column; }
+}
+
+/* Checkbox */
+.auth__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+.auth__checkbox input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--green);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.auth__checkbox a {
+  color: var(--green);
+  font-weight: 500;
+}
+.auth__checkbox a:hover {
+  text-decoration: underline;
+}
+
+/* Submit */
+.auth__submit {
+  width: 100%;
+  justify-content: center;
+  padding: 14px;
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+/* Error message */
+.auth__error {
+  font-size: 0.85rem;
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: -4px;
+  text-align: center;
+}
+
+/* Switch */
+.auth__switch {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  margin-top: 28px;
+}
+.auth__switch a {
+  color: var(--green);
+  font-weight: 600;
+}
+.auth__switch a:hover {
+  text-decoration: underline;
+}
+
+/* Back link */
+.auth__back {
+  text-align: center;
+  margin-top: 12px;
+}
+.auth__back a {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+  transition: color 0.2s;
+}
+.auth__back a:hover {
+  color: var(--gray-600);
+}

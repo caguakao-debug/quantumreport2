@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Debug</title></head>
+<body>
+  <h1>Debug</h1>
+  <form id="testForm">
+    <input type="text" id="name" placeholder="Nombre">
+    <button type="submit">Enviar</button>
+  </form>
+  <div id="output"></div>
+  <script>
+    document.getElementById('output').textContent = 'Script running!';
+    document.getElementById('testForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('output').textContent = 'Submit prevented!';
+    });
+  </script>
+</body>
+</html>

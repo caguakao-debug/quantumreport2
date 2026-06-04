@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — QuantumReport</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a href="/" class="topbar__logo">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="#10b981" stroke-width="2" fill="none"/>
+          <path d="M16 8v8l6 3" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2" fill="#10b981"/>
+        </svg>
+        <span>QuantumReport</span>
+      </a>
+
+      <nav class="topbar__nav">
+        <a href="#inicio" class="topbar__link topbar__link--active">Inicio</a>
+        <a href="#perfil" class="topbar__link">Mi Perfil</a>
+      </nav>
+
+      <div class="topbar__user">
+        <span class="topbar__plan" id="planBadge">Plan Pro</span>
+        <span class="topbar__clinica" id="clinicaNombre">Mi Consultorio</span>
+        <button id="logoutBtn" class="topbar__logout" title="Cerrar sesión">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD LAYOUT -->
+  <div class="dash">
+
+    <!-- ============= INICIO ============= -->
+    <section class="dash__section" id="inicio">
+
+      <!-- Usage bar -->
+      <div class="dash__usage">
+        <div class="dash__usage-info">
+          <strong>30</strong> de <strong>50</strong> análisis utilizados este mes
+        </div>
+        <div class="dash__usage-bar">
+          <div class="dash__usage-fill" style="width: 60%"></div>
+        </div>
+      </div>
+
+      <div class="dash__grid">
+        <!-- Subir informe -->
+        <div class="dash-card dash-card--upload">
+          <h2 class="dash-card__title">Subir informe</h2>
+          <p class="dash-card__desc">Sube el informe de biorresonancia en PDF, imagen o texto.</p>
+
+          <div class="upload-zone" id="uploadZone">
+            <div class="upload-zone__icon">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 28V12M14 18l6-6 6 6" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="4" y="4" width="32" height="32" rx="8" stroke="#10b981" stroke-width="2" stroke-dasharray="4 4"/>
+              </svg>
+            </div>
+            <p class="upload-zone__text">Arrastra el archivo aquí o <span>haz clic para buscar</span></p>
+            <p class="upload-zone__formats">PDF, PNG, JPG, TXT — Máx 20 MB</p>
+            <input type="file" id="fileInput" class="upload-zone__input" accept=".pdf,.png,.jpg,.jpeg,.txt">
+          </div>
+
+          <div class="upload-preview" id="uploadPreview" style="display:none">
+            <div class="upload-preview__file">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span id="fileName">informe.pdf</span>
+            </div>
+            <button class="btn btn--primary" id="analyzeBtn">Analizar con IA</button>
+          </div>
+        </div>
+
+        <!-- Resultado -->
+        <div class="dash-card dash-card--result">
+          <h2 class="dash-card__title">Resumen generado</h2>
+          <p class="dash-card__desc">El resultado del análisis aparecerá aquí.</p>
+
+          <div class="result-empty" id="resultEmpty">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="#cbd5e1" stroke-width="2"/>
+              <path d="M24 16v8l4 2" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <p>Esperando un informe para analizar</p>
+          </div>
+
+          <div class="result-content" id="resultContent" style="display:none">
+            <div class="result-content__header">
+              <div class="result-content__brand">
+                <img src="" alt="" class="result-content__logo" id="resultLogo">
+                <div>
+                  <strong id="resultClinica">Centro de Salud Integral</strong>
+                  <span id="resultSlogan">Tu salud, nuestra prioridad</span>
+                </div>
+              </div>
+            </div>
+            <div class="result-content__body" id="resultBody">
+              <p><strong>Resumen del informe de biorresonancia</strong></p>
+              <p>El análisis muestra un desbalance energético en los meridianos de hígado y riñón, con una frecuencia compatible con carga tóxica leve. Se recomienda un plan de 4 semanas de drenaje hepático y soporte renal.</p>
+              <p><em>Este resumen fue generado por IA. No reemplaza la evaluación profesional.</em></p>
+            </div>
+            <div class="result-content__actions">
+              <button class="btn btn--primary" id="sendWhatsapp">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Enviar por WhatsApp
+              </button>
+              <button class="btn btn--outline" id="downloadPdf">Descargar PDF</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= MI PERFIL ============= -->
+    <section class="dash__section dash__section--hidden" id="perfil">
+      <h2 class="dash-card__title" style="margin-bottom:8px">Mi Perfil</h2>
+      <p class="dash-card__desc" style="margin-bottom:32px">Personaliza la identidad de tu consultorio para los resúmenes.</p>
+
+      <form class="profile-form" id="profileForm">
+        <div class="profile-form__row">
+          <div class="profile-form__field">
+            <label>Nombre del consultorio</label>
+            <input type="text" class="profile-form__input" id="profileName" placeholder="Ej: Centro de Salud Integral" value="Centro de Salud Integral">
+          </div>
+          <div class="profile-form__field">
+            <label>Plan actual</label>
+            <input type="text" class="profile-form__input" value="Pro — 50 análisis/mes" disabled>
+          </div>
+        </div>
+
+        <div class="profile-form__field">
+          <label>Eslogan</label>
+          <input type="text" class="profile-form__input" id="profileSlogan" placeholder="Ej: Tu salud, nuestra prioridad" value="Tu salud, nuestra prioridad">
+        </div>
+
+        <div class="profile-form__field">
+          <label>Logo del consultorio</label>
+          <div class="profile-logo">
+            <div class="profile-logo__preview" id="logoPreview">
+              <span>CS</span>
+            </div>
+            <div class="profile-logo__actions">
+              <button type="button" class="btn btn--outline" id="uploadLogoBtn">Subir logo</button>
+              <p class="profile-logo__hint">PNG o JPG. Recomendado: 200x200 px</p>
+            </div>
+            <input type="file" id="logoInput" accept=".png,.jpg,.jpeg" style="display:none">
+          </div>
+        </div>
+
+        <div class="profile-form__field">
+          <label>WhatsApp del consultorio</label>
+          <input type="tel" class="profile-form__input" id="profileWhatsapp" placeholder="Ej: +56 9 1234 5678" value="+56 9 1234 5678">
+        </div>
+
+        <div class="profile-form__actions">
+          <button type="submit" class="btn btn--primary">Guardar cambios</button>
+        </div>
+      </form>
+    </section>
+
+  </div>
+
+  <script src="supabase.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

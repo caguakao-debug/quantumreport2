@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuantumReport — IA para informes de biorresonancia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__logo">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M16 8v8l6 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="16" r="2" fill="currentColor"/>
+        </svg>
+        <span>QuantumReport</span>
+      </a>
+      <div class="nav__links">
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#planes">Planes</a>
+      </div>
+      <div class="nav__actions">
+        <a href="login.html" class="btn btn--ghost nav__login">Iniciar Sesión</a>
+        <a href="register.html" class="btn btn--primary nav__register">Registrar Consultorio</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__pattern"></div>
+    <div class="container hero__inner">
+      <div class="hero__badge">🚀 Lanzamiento 2026</div>
+      <h1 class="hero__title">
+        Tus informes de biorresonancia<br>
+        <span class="hero__highlight">explicados para tus pacientes</span>
+      </h1>
+      <p class="hero__sub">
+        QuantumReport usa IA para transformar informes técnicos en resúmenes claros, 
+        atractivos y personalizados con la identidad de tu consultorio. Envía los resultados 
+        a tus pacientes por WhatsApp al instante.
+      </p>
+      <div class="hero__actions">
+        <a href="register.html" class="btn btn--primary">Comenzar prueba gratis</a>
+        <button class="btn btn--play">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M5 3L12 8L5 13V3Z" fill="currentColor"/>
+          </svg>
+          Ver demo
+        </button>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="500">0</span>
+          <span class="hero__stat-label">Consultorios activos</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="50">0</span>
+          <span class="hero__stat-label">Mil informes analizados</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="97">0</span>
+          <span class="hero__stat-label">% de satisfacción</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="steps" id="como-funciona">
+    <div class="container">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Tres pasos, un resultado<br>que tus pacientes entenderán</h2>
+
+      <div class="steps__grid">
+        <article class="step-card" data-reveal>
+          <span class="step-card__num">01</span>
+          <div class="step-card__icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M4 24V8a4 4 0 014-4h16a4 4 0 014 4v16a4 4 0 01-4 4H8a4 4 0 01-4-4z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 12h8M12 18h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="step-card__title">Sube el informe</h3>
+          <p class="step-card__desc">El consultorio sube el informe de biorresonancia en PDF, imagen o texto. Aceptamos cualquier formato.</p>
+        </article>
+
+        <article class="step-card" data-reveal>
+          <span class="step-card__num">02</span>
+          <div class="step-card__icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M16 10v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="step-card__title">IA lo analiza</h3>
+          <p class="step-card__desc">Nuestro agente interpreta los datos y genera un resumen en lenguaje sencillo con el logo y eslogan de tu consultorio.</p>
+        </article>
+
+        <article class="step-card" data-reveal>
+          <span class="step-card__num">03</span>
+          <div class="step-card__icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M4 20l8-8 6 6 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10h2a2 2 0 012 2v12a2 2 0 01-2 2H8a2 2 0 01-2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="step-card__title">Llega por WhatsApp</h3>
+          <p class="step-card__desc">El paciente recibe su resumen directamente en su WhatsApp. Claro, atractivo y al instante.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="benefits" id="beneficios">
+    <div class="container">
+      <div class="section-label">Beneficios</div>
+      <h2 class="section-title">Por qué los consultorios<br>ya están migrando a QuantumReport</h2>
+
+      <div class="benefits__grid">
+        <article class="benefit-card" data-reveal>
+          <div class="benefit-card__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 2L17.09 8.26L24 9.27L19 14.14L20.18 21.02L14 17.77L7.82 21.02L9 14.14L4 9.27L10.91 8.26L14 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="benefit-card__title">Marca propia</h3>
+          <p class="benefit-card__desc">Cada resumen lleva el logo y eslogan de tu consultorio. Tus pacientes te reconocen al instante.</p>
+        </article>
+
+        <article class="benefit-card" data-reveal>
+          <div class="benefit-card__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M20 10a6 6 0 11-12 0 6 6 0 0112 0z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 26c0-4 4.5-7 10-7s10 3 10 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="benefit-card__title">Experiencia del paciente</h3>
+          <p class="benefit-card__desc">Transformamos datos complejos en un lenguaje claro y visual que cualquier persona entiende.</p>
+        </article>
+
+        <article class="benefit-card" data-reveal>
+          <div class="benefit-card__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M22 12h-2V8a6 6 0 00-12 0v4H6a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V14a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="14" cy="19" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 class="benefit-card__title">Entrega por WhatsApp</h3>
+          <p class="benefit-card__desc">El resumen llega directo al celular del paciente. Sin apps, sin clics extra, sin complicaciones.</p>
+        </article>
+
+        <article class="benefit-card" data-reveal>
+          <div class="benefit-card__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="4" y="4" width="20" height="20" rx="4" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 10h8M12 14h8M12 18h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="benefit-card__title">Multi-formato</h3>
+          <p class="benefit-card__desc">Aceptamos PDF, imágenes, texto plano. Sube el archivo como sea, nosotros lo procesamos.</p>
+        </article>
+
+        <article class="benefit-card" data-reveal>
+          <div class="benefit-card__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 4C8.477 4 4 8.477 4 14s4.477 10 10 10 10-4.477 10-10S19.523 4 14 4z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M14 8v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="benefit-card__title">Respuesta inmediata</h3>
+          <p class="benefit-card__desc">El análisis tarda segundos. Tu paciente recibe el resumen antes de salir del consultorio.</p>
+        </article>
+
+        <article class="benefit-card" data-reveal>
+          <div class="benefit-card__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M28 14A14 14 0 110 14a14 14 0 0128 0z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M14 8v8l6 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="benefit-card__title">Historial por paciente</h3>
+          <p class="benefit-card__desc">Todos los análisis quedan guardados. Accede al historial completo de cada paciente cuando quieras.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="plans" id="planes">
+    <div class="container">
+      <div class="section-label">Planes</div>
+      <h2 class="section-title">Elige el plan ideal para<br>tu consultorio</h2>
+
+      <div class="plans__grid">
+        <article class="plan-card" data-reveal>
+          <h3 class="plan-card__name">Gratis</h3>
+          <div class="plan-card__price">
+            <span class="plan-card__amount">$0</span>
+            <span class="plan-card__period">única vez</span>
+          </div>
+          <p class="plan-card__description">Prueba única sin costo. Sin envio por WhatsApp.</p>
+          <ul class="plan-card__features">
+            <li>10 análisis de prueba</li>
+            <li>1 consultorio registrado</li>
+            <li>Marca de agua de QuantumReport</li>
+            <li>Descarga e impresión local</li>
+          </ul>
+          <a href="register.html" class="btn btn--outline plan-card__btn">Probar gratis</a>
+        </article>
+
+        <article class="plan-card" data-reveal>
+          <h3 class="plan-card__name">Inicial</h3>
+          <div class="plan-card__price">
+            <span class="plan-card__amount">$19</span>
+            <span class="plan-card__period">/mes</span>
+          </div>
+          <p class="plan-card__description">Perfecto para consultorios que están arrancando.</p>
+          <ul class="plan-card__features">
+            <li>20 análisis por mes</li>
+            <li>1 consultorio registrado</li>
+            <li>Logo y eslogan personalizado</li>
+            <li>Envío por WhatsApp</li>
+            <li>Soporte por correo</li>
+          </ul>
+          <a href="register.html" class="btn btn--outline plan-card__btn">Elegir plan</a>
+        </article>
+
+        <article class="plan-card plan-card--featured" data-reveal>
+          <div class="plan-card__badge">Más popular</div>
+          <h3 class="plan-card__name">Pro</h3>
+          <div class="plan-card__price">
+            <span class="plan-card__amount">$49</span>
+            <span class="plan-card__period">/mes</span>
+          </div>
+          <p class="plan-card__description">Para consultorios con movimiento constante.</p>
+          <ul class="plan-card__features">
+            <li>50 análisis por mes</li>
+            <li>1 consultorio registrado</li>
+            <li>Logo y eslogan personalizado</li>
+            <li>Envío por WhatsApp</li>
+            <li>Soporte prioritario</li>
+          </ul>
+          <a href="register.html" class="btn btn--primary plan-card__btn">Elegir plan</a>
+        </article>
+
+        <article class="plan-card" data-reveal>
+          <h3 class="plan-card__name">Premium</h3>
+          <div class="plan-card__price">
+            <span class="plan-card__amount">$99</span>
+            <span class="plan-card__period">/mes</span>
+          </div>
+          <p class="plan-card__description">Análisis ilimitados para alto volumen.</p>
+          <ul class="plan-card__features">
+            <li>Análisis ilimitados</li>
+            <li>Hasta 2 consultorios</li>
+            <li>Logo y eslogan personalizado</li>
+            <li>Envío por WhatsApp</li>
+            <li>Soporte dedicado 24/7</li>
+          </ul>
+          <a href="register.html" class="btn btn--outline plan-card__btn">Elegir plan</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER / CTA -->
+  <section class="register" id="registro">
+    <div class="container">
+      <div class="register__box" data-reveal>
+        <div class="register__glow"></div>
+        <h2 class="register__title">Registra tu consultorio<br>y empieza a usar QuantumReport</h2>
+        <p class="register__sub">Sin compromiso. Cancela cuando quieras.</p>
+        <form class="register__form" id="registerFormLanding">
+          <div class="register__fields">
+            <input type="text" placeholder="Nombre del consultorio" class="register__input" required>
+            <input type="email" placeholder="Correo electrónico" class="register__input" required>
+            <input type="tel" placeholder="WhatsApp del consultorio" class="register__input" required>
+          </div>
+          <button type="submit" class="btn btn--primary btn--lg register__btn">Crear cuenta gratis</button>
+        </form>
+        <p class="register__footnote">¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="nav__logo">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+            <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M16 8v8l6 3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="2" fill="currentColor"/>
+          </svg>
+          <span>QuantumReport</span>
+        </a>
+        <p class="footer__tagline">Transformando la biorresonancia en conversaciones claras.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Producto</h4>
+          <a href="#">Cómo funciona</a>
+          <a href="#">Beneficios</a>
+          <a href="#">Planes</a>
+          <a href="#">FAQ</a>
+        </div>
+        <div class="footer__col">
+          <h4>Compañía</h4>
+          <a href="#">Sobre nosotros</a>
+          <a href="#">Blog</a>
+          <a href="#">Contacto</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; 2026 QuantumReport. Todos los derechos reservados. <a href="admin.html" style="color:var(--gray-700);text-decoration:none;font-size:0.7rem;margin-left:12px">⚙️</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
