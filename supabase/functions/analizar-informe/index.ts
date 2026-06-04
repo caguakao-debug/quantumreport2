@@ -1,5 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { PDFDocument, rgb, StandardFonts } from 'https://esm.sh/pdf-lib'
+import * as pdfjsLib from 'https://esm.sh/pdfjs-dist@4.0.379'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -77,67 +78,82 @@ Deno.serve(async (req) => {
       throw new Error(`Error al descargar el archivo del storage: ${downloadErr?.message || 'Archivo vacío'}`)
     }
     
-    // 3. Preparar archivo en base64 para enviarlo a Gemini
+    // 3. Extraer texto del archivo (DeepSeek no es multimodal, solo texto)
     const fileArrayBuffer = await fileData.arrayBuffer()
-    const uint8Array = new Uint8Array(fileArrayBuffer)
-    let binary = ''
-    const len = uint8Array.byteLength
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(uint8Array[i])
-    }
-    const base64File = btoa(binary)
-    
-    // Configurar API de Gemini
-    const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
-    if (!GEMINI_API_KEY) {
-      throw new Error('La variable de entorno GEMINI_API_KEY no está configurada')
-    }
-    
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
-    
-    // MimeType del archivo original
     const fileExt = informe.archivo_original.split('.').pop()?.toLowerCase() ?? ''
-    let mimeType = 'application/pdf'
-    if (fileExt === 'txt') mimeType = 'text/plain'
-    else if (fileExt === 'png') mimeType = 'image/png'
-    else if (fileExt === 'jpg' || fileExt === 'jpeg') mimeType = 'image/jpeg'
     
-    const prompt = `Analiza este informe de biorresonancia. Genera un resumen ejecutivo claro y una interpretación de los resultados en un tono muy amigable, explicativo y empático para el paciente. 
-Organiza la respuesta en las siguientes secciones usando Markdown limpio (sin asteriscos excesivos, usa encabezados simples):
+    let fileText = ''
+    if (fileExt === 'txt') {
+      fileText = new TextDecoder().decode(fileArrayBuffer)
+    } else if (fileExt === 'pdf') {
+      // Extraer texto del PDF usando pdfjs-dist
+      try {
+        const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(fileArrayBuffer) })
+        const pdf = await loadingTask.promise
+        const pages: string[] = []
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i)
+          const content = await page.getTextContent()
+          const pageText = content.items.map((item: any) => item.str).join(' ')
+          pages.push(pageText)
+        }
+        fileText = pages.join('\n')
+      } catch (parseErr: any) {
+        throw new Error(`No se pudo extraer texto del PDF: ${parseErr.message || 'Error de parsing'}`)
+      }
+    } else {
+      throw new Error('DeepSeek solo soporta archivos PDF y TXT. Las imágenes no son compatibles. Convierte el archivo a PDF.')
+    }
+
+    if (!fileText.trim()) {
+      throw new Error('El archivo está vacío o no contiene texto extraíble.')
+    }
+
+    // Configurar API de DeepSeek
+    const DEEPSEEK_API_KEY = Deno.env.get('DEEPSEEK_API_KEY')
+    if (!DEEPSEEK_API_KEY) {
+      throw new Error('La variable de entorno DEEPSEEK_API_KEY no está configurada')
+    }
+    
+    const systemPrompt = `Eres un asistente experto en biorresonancia. Tu tarea es analizar informes de biorresonancia y generar resúmenes ejecutivos claros, amigables y empáticos para el paciente.
+
+Organiza SIEMPRE tu respuesta en estas secciones usando Markdown limpio:
 1. Resumen General
 2. Puntos Clave Identificados
 3. Recomendaciones del Especialista
-Evita explicaciones técnicas complejas. Mantén la explicación comprensible.`
 
-    const geminiPayload = {
-      contents: [{
-        parts: [
-          {
-            inlineData: {
-              mimeType: mimeType,
-              data: base64File
-            }
-          },
-          {
-            text: prompt
-          }
-        ]
-      }]
+Mantén un tono cálido, explicativo y comprensible. Evita jerga técnica compleja.`
+
+    const userPrompt = `Analiza este informe de biorresonancia y genera un resumen ejecutivo claro para el paciente:
+
+${fileText}`
+
+    const deepseekPayload = {
+      model: 'deepseek-chat',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+      max_tokens: 4096,
+      temperature: 0.7,
     }
     
-    const geminiRes = await fetch(geminiUrl, {
+    const deepseekRes = await fetch('https://api.deepseek.com/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(geminiPayload)
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`,
+      },
+      body: JSON.stringify(deepseekPayload),
     })
     
-    if (!geminiRes.ok) {
-      const errText = await geminiRes.text()
-      throw new Error(`Error en API de Gemini: ${errText}`)
+    if (!deepseekRes.ok) {
+      const errText = await deepseekRes.text()
+      throw new Error(`Error en API de DeepSeek: ${errText}`)
     }
     
-    const geminiData = await geminiRes.json()
-    const rawAnalysis = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || 'No se pudo generar el análisis de la IA.'
+    const deepseekData = await deepseekRes.json()
+    const rawAnalysis = deepseekData.choices?.[0]?.message?.content || 'No se pudo generar el análisis de la IA.'
     
     // 4. Guardar el análisis en la BD
     const { error: updateErr } = await supabaseClient

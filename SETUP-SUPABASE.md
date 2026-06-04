@@ -63,7 +63,21 @@ CREATE TRIGGER on_auth_user_created
   FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 ```
 
-## 4. Verificar Authentication
+## 4. Configurar API de DeepSeek
+
+La Edge Function `analizar-informe` usa DeepSeek para generar los resúmenes con IA.
+
+1. Ve a **Edge Functions** en Supabase Dashboard
+2. Selecciona `analizar-informe`
+3. Ve a la pestaña **Environment Variables**
+4. Agrega la variable:
+   - **Name**: `DEEPSEEK_API_KEY`
+   - **Value**: Tu API Key de DeepSeek (de https://platform.deepseek.com/api_keys)
+5. Haz clic en **Save**
+
+> ⚠️ DeepSeek solo soporta archivos de texto (PDF y TXT). Las imágenes no son compatibles.
+
+## 5. Verificar Authentication
 
 1. Ve a **Authentication → Settings**
 2. Asegúrate de que **Email Auth** esté habilitado (confirmar email opcional)
